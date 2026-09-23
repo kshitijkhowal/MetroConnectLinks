@@ -5,8 +5,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/',
-        destination: '/metroconnect',
+        source: '/metroconnect',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/metroconnect/:path*',
+        destination: '/:path*',
         permanent: false,
       },
     ];

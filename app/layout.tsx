@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
-import { APP_NAME, APP_TAGLINE, PLAY_STORE_URL, WEB_APP_PATH, WEB_HOST } from '@/lib/config';
+import { APP_NAME, APP_TAGLINE, PLAY_STORE_URL, WEB_HOST } from '@/lib/config';
 import './globals.css';
 
 const geistSans = Geist({
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: APP_NAME,
     description: APP_TAGLINE,
-    url: `https://${WEB_HOST}${WEB_APP_PATH}`,
+    url: `https://${WEB_HOST}`,
     siteName: APP_NAME,
     type: 'website',
   },

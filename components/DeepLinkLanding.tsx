@@ -6,7 +6,6 @@ import {
   APP_NAME,
   APP_TAGLINE,
   PLAY_STORE_URL,
-  getAndroidIntentUrl,
   getCustomSchemeUrl,
   getLinkTitle,
 } from '@/lib/config';
@@ -24,26 +23,12 @@ export function DeepLinkLanding({ pathSegments, query }: DeepLinkLandingProps) {
     () => getCustomSchemeUrl(pathSegments, query),
     [pathSegments, query],
   );
-  const intentUrl = useMemo(
-    () => getAndroidIntentUrl(pathSegments, query),
-    [pathSegments, query],
-  );
   const isAndroid = platform === 'android';
 
   useEffect(() => {
     const detected = getPlatformFromUserAgent(window.navigator.userAgent);
     setPlatform(detected);
-
-    if (detected !== 'android') {
-      return;
-    }
-
-    const timer = window.setTimeout(() => {
-      window.location.replace(intentUrl);
-    }, 80);
-
-    return () => window.clearTimeout(timer);
-  }, [intentUrl]);
+  }, []);
 
   return (
     <main className="relative flex min-h-full flex-1 items-center justify-center overflow-hidden px-5 py-12">
@@ -67,11 +52,11 @@ export function DeepLinkLanding({ pathSegments, query }: DeepLinkLandingProps) {
           {isAndroid ? (
             <>
               <h1 className="text-2xl font-semibold tracking-tight text-white">
-                Opening {title}
+                Open {title}
               </h1>
               <p className="mt-3 text-[15px] leading-6 text-slate-300">
-                If MetroConnect is installed, it should open this screen. Otherwise you will be
-                taken to Google Play.
+                If MetroConnect is installed, tap the button below. Chrome will not open a local
+                debug build by itself, so this needs a tap.
               </p>
             </>
           ) : (
@@ -90,7 +75,7 @@ export function DeepLinkLanding({ pathSegments, query }: DeepLinkLandingProps) {
         <div className="mt-8 flex flex-col gap-3">
           {isAndroid ? (
             <a
-              href={intentUrl}
+              href={customSchemeUrl}
               className="inline-flex h-12 items-center justify-center rounded-full bg-[#1976d2] px-5 text-sm font-semibold text-white transition hover:bg-[#1565c0]"
             >
               Open in MetroConnect
@@ -109,14 +94,7 @@ export function DeepLinkLanding({ pathSegments, query }: DeepLinkLandingProps) {
           </a>
         </div>
 
-        {isAndroid ? (
-          <p className="mt-5 text-center text-xs text-slate-500">
-            Having trouble?{' '}
-            <a className="underline decoration-slate-600 underline-offset-2" href={customSchemeUrl}>
-              Try the app link
-            </a>
-          </p>
-        ) : (
+        {isAndroid ? null : (
           <p className="mt-5 text-center text-xs text-slate-500">
             iPhone, iPad, and other devices are on the way.
           </p>

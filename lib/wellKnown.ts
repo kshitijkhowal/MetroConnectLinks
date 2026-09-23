@@ -26,7 +26,7 @@ export function getAppleAppSiteAssociationResponse(): Response {
     ? [
         {
           appID: `${teamId}.${IOS_BUNDLE_ID}`,
-          paths: ['/metroconnect', '/metroconnect/*'],
+          paths: ['*'],
         },
       ]
     : [];

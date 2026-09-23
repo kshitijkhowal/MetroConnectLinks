@@ -3,9 +3,7 @@ export const APP_TAGLINE = 'Your Delhi Metro companion';
 export const APP_SCHEME = 'metroconnect';
 export const ANDROID_PACKAGE = 'com.kshitij_khowal.MetroConnect';
 export const IOS_BUNDLE_ID = 'com.KshitijKhowal.MetroConnect';
-export const WEB_HOST = 'kshitijkhowal.in';
-export const WEB_APP_PREFIX = 'metroconnect';
-export const WEB_APP_PATH = `/${WEB_APP_PREFIX}`;
+export const WEB_HOST = 'metro.kshitijkhowal.in';
 
 export const PLAY_STORE_URL =
   `https://play.google.com/store/apps/details?id=${ANDROID_PACKAGE}`;
@@ -58,12 +56,6 @@ export function getCustomSchemeUrl(pathSegments: string[], query: Record<string,
   const path = toAppPath(pathSegments);
   const origin = path ? `${APP_SCHEME}://${path}` : `${APP_SCHEME}://`;
   return `${origin}${toQueryString(query)}`;
-}
-
-export function getAndroidIntentUrl(pathSegments: string[], query: Record<string, string>): string {
-  const path = toAppPath(pathSegments) || 'index';
-  const fallback = encodeURIComponent(PLAY_STORE_URL);
-  return `intent://${path}${toQueryString(query)}#Intent;scheme=${APP_SCHEME};package=${ANDROID_PACKAGE};S.browser_fallback_url=${fallback};end`;
 }
 
 export function getLinkTitle(pathSegments: string[]): string {
