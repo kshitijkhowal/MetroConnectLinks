@@ -2,6 +2,7 @@
   "name": "metroconnect-links",
   "version": "0.1.0",
   "private": true,
+  "description": "HTTPS deep links for MetroConnect on kshitijkhowal.in",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

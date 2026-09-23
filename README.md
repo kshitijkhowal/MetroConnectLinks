@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MetroConnect links
 
-## Getting Started
+Small Next.js site for [kshitijkhowal.in](https://kshitijkhowal.in). It turns clickable `https://` links into MetroConnect deep links.
 
-First, run the development server:
+## What a link does
+
+| Device | Behaviour |
+| --- | --- |
+| Android, app installed | Opens MetroConnect on the matching screen |
+| Android, app not installed | Sends the user to [Google Play](https://play.google.com/store/apps/details?id=com.kshitij_khowal.MetroConnect) |
+| iPhone, iPad, desktop, anything else | Shows **Coming soon on this device** and a Google Play button |
+
+Examples:
+
+- `https://kshitijkhowal.in/fareScreen`
+- `https://kshitijkhowal.in/fareScreen/rapidMetro`
+- `https://kshitijkhowal.in/routeScreen?fromStationId=1&toStationId=2&routePreference=time`
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open [http://localhost:3000/fareScreen](http://localhost:3000/fareScreen).
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this repo to GitHub.
+2. Import the project in [Vercel](https://vercel.com/new).
+3. Add the custom domain `kshitijkhowal.in` (and `www` if you use it) in Vercel → Project → Settings → Domains.
+4. Point the domain DNS to Vercel:
+   - Apex: A record to `10.0.1.2`, or the records Vercel shows
+   - `www`: CNAME to `cname.vercel-dns.com`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Optional environment variables (Project → Settings → Environment Variables):
+
+| Name | Purpose |
+| --- | --- |
+| `ANDROID_SHA256_FINGERPRINTS` | Play App Signing SHA-256, comma-separated, so Android App Links can skip the browser |
+| `APPLE_TEAM_ID` | Apple Team ID for Universal Links when the iOS app ships |
+
+After adding SHA-256 fingerprints, Android can open `https://kshitijkhowal.in/...` directly. Until then, the page uses `metroconnect://` / Android intents, then falls back to Play Store.
+
+### Play Console SHA-256
+
+Play Console → MetroConnect → Test and release → App integrity → App signing → **SHA-256 certificate fingerprint**.
+
+Paste it as `AA:BB:CC:...` in `ANDROID_SHA256_FINGERPRINTS`.
+
+## Native app (MetroConnect)
+
+The mobile app should generate and accept these HTTPS URLs, and declare:
+
+- Android App Links for `https://kshitijkhowal.in`
+- iOS associated domains `applinks:kshitijkhowal.in` when iOS is ready
+
+Rebuild the native app after changing `app.json` intent filters / associated domains.
