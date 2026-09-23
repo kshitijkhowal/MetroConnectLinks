@@ -1,18 +1,91 @@
 @import "tailwindcss";
 
+/*
+ * Colors match MetroConnect theme/color/lightColors.ts and darkColors.ts.
+ * The app follows the system appearance, so this site does too.
+ */
 :root {
-  --background: #0b1220;
-  --foreground: #f4f7fb;
+  color-scheme: light;
+  --background: #f5f5f5;
+  --foreground: #212121;
+  --text-secondary: #757575;
+  --text-hint: #9e9e9e;
+  --surface: #ffffff;
+  --border: #e0e0e0;
+  --primary: #1976d2;
+  --primary-dark: #1565c0;
+  --primary-contrast: #ffffff;
+  --secondary: #dc004e;
+  --pressed: rgba(0, 0, 0, 0.08);
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  --icon-track: #212121;
+  --icon-node: #757575;
+  --metro-red: #e30613;
+  --metro-yellow: #f6d71a;
+  --metro-blue: #003da5;
+  --metro-green: #00a651;
+  --metro-violet: #8115ff;
+  --metro-magenta: #e20074;
+  --metro-pink: #ff6ec7;
+  --metro-orange: #ff6600;
+  --metro-rapid: #00bcd4;
+  --metro-airport: #9c27b0;
+  --metro-aqua: #00a8a8;
+  --metro-namo: #c45c26;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --background: #121212;
+    --foreground: #e0e0e0;
+    --text-secondary: #9e9e9e;
+    --text-hint: #757575;
+    --surface: #1e1e1e;
+    --border: #333333;
+    --primary: #42a5f5;
+    --primary-dark: #1976d2;
+    --primary-contrast: #000000;
+    --secondary: #ff5983;
+    --pressed: rgba(255, 255, 255, 0.08);
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+    --icon-track: #e4e4e4;
+    --icon-node: #b9b9b9;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-muted: var(--text-secondary);
+  --color-hint: var(--text-hint);
+  --color-surface: var(--surface);
+  --color-line: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-on-primary: var(--primary-contrast);
+  --color-secondary: var(--secondary);
+  --color-pressed: var(--pressed);
+  --color-icon-track: var(--icon-track);
+  --color-metro-red: var(--metro-red);
+  --color-metro-yellow: var(--metro-yellow);
+  --color-metro-blue: var(--metro-blue);
+  --color-metro-green: var(--metro-green);
+  --color-metro-violet: var(--metro-violet);
+  --color-metro-magenta: var(--metro-magenta);
+  --color-metro-pink: var(--metro-pink);
+  --color-metro-orange: var(--metro-orange);
+  --color-metro-rapid: var(--metro-rapid);
+  --color-metro-airport: var(--metro-airport);
+  --color-metro-aqua: var(--metro-aqua);
+  --color-metro-namo: var(--metro-namo);
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
 }

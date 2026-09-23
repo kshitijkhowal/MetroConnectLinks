@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: DeepLinkPageProps): Promise<M
   const title = getLinkTitle(path);
 
   return {
-    title: title === APP_NAME ? APP_NAME : `${title} · ${APP_NAME}`,
+    title,
     description: `Open ${title} in ${APP_NAME}. ${APP_TAGLINE}.`,
   };
 }
