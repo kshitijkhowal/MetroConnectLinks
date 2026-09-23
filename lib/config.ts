@@ -4,6 +4,8 @@ export const APP_SCHEME = 'metroconnect';
 export const ANDROID_PACKAGE = 'com.kshitij_khowal.MetroConnect';
 export const IOS_BUNDLE_ID = 'com.KshitijKhowal.MetroConnect';
 export const WEB_HOST = 'kshitijkhowal.in';
+export const WEB_APP_PREFIX = 'metroconnect';
+export const WEB_APP_PATH = `/${WEB_APP_PREFIX}`;
 
 export const PLAY_STORE_URL =
   `https://play.google.com/store/apps/details?id=${ANDROID_PACKAGE}`;

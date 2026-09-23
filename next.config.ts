@@ -2,6 +2,15 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   trailingSlash: false,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/metroconnect',
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {

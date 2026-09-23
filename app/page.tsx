@@ -1,5 +1,6 @@
-import { DeepLinkLanding } from '@/components/DeepLinkLanding';
+import { redirect } from 'next/navigation';
+import { WEB_APP_PATH } from '@/lib/config';
 
 export default function HomePage() {
-  return <DeepLinkLanding pathSegments={[]} query={{}} />;
+  redirect(WEB_APP_PATH);
 }

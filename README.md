@@ -1,6 +1,6 @@
 # MetroConnect links
 
-Small Next.js site for [kshitijkhowal.in](https://kshitijkhowal.in). It turns clickable `https://` links into MetroConnect deep links.
+Small Next.js site for [kshitijkhowal.in](https://kshitijkhowal.in). It turns clickable `https://` links into MetroConnect deep links under `/metroconnect`.
 
 ## What a link does
 
@@ -12,9 +12,12 @@ Small Next.js site for [kshitijkhowal.in](https://kshitijkhowal.in). It turns cl
 
 Examples:
 
-- `https://kshitijkhowal.in/fareScreen`
-- `https://kshitijkhowal.in/fareScreen/rapidMetro`
-- `https://kshitijkhowal.in/routeScreen?fromStationId=1&toStationId=2&routePreference=time`
+- `https://kshitijkhowal.in/metroconnect`
+- `https://kshitijkhowal.in/metroconnect/fareScreen`
+- `https://kshitijkhowal.in/metroconnect/fareScreen/rapidMetro`
+- `https://kshitijkhowal.in/metroconnect/routeScreen?fromStationId=1&toStationId=2&routePreference=time`
+
+`https://kshitijkhowal.in` redirects to `/metroconnect`.
 
 ## Local development
 
@@ -23,7 +26,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000/fareScreen](http://localhost:3000/fareScreen).
+Open [http://localhost:3000/metroconnect/fareScreen](http://localhost:3000/metroconnect/fareScreen).
 
 ## Deploy on Vercel
 
@@ -41,7 +44,7 @@ Optional environment variables (Project → Settings → Environment Variables):
 | `ANDROID_SHA256_FINGERPRINTS` | Play App Signing SHA-256, comma-separated, so Android App Links can skip the browser |
 | `APPLE_TEAM_ID` | Apple Team ID for Universal Links when the iOS app ships |
 
-After adding SHA-256 fingerprints, Android can open `https://kshitijkhowal.in/...` directly. Until then, the page uses `metroconnect://` / Android intents, then falls back to Play Store.
+After adding SHA-256 fingerprints, Android can open `https://kshitijkhowal.in/metroconnect/...` directly. Until then, the page uses `metroconnect://` / Android intents, then falls back to Play Store.
 
 ### Play Console SHA-256
 
@@ -53,7 +56,7 @@ Paste it as `AA:BB:CC:...` in `ANDROID_SHA256_FINGERPRINTS`.
 
 The mobile app should generate and accept these HTTPS URLs, and declare:
 
-- Android App Links for `https://kshitijkhowal.in`
+- Android App Links for `https://kshitijkhowal.in/metroconnect`
 - iOS associated domains `applinks:kshitijkhowal.in` when iOS is ready
 
 Rebuild the native app after changing `app.json` intent filters / associated domains.
